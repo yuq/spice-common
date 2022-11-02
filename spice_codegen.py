@@ -108,9 +108,8 @@ def write_enums(writer, describe=False):
 def write_content(dest_file, content, keep_identical_file):
     if keep_identical_file:
         try:
-            f = open(dest_file, 'rb')
-            old_content = f.read()
-            f.close()
+            with open(dest_file, 'rb') as f:
+                old_content = f.read()
 
             if content == old_content:
                 print("No changes to %s" % dest_file)
@@ -119,9 +118,8 @@ def write_content(dest_file, content, keep_identical_file):
         except IOError:
             pass
 
-    f = open(dest_file, 'wb')
-    f.write(bytes(content, 'UTF-8'))
-    f.close()
+    with open(dest_file, 'wb') as f:
+        f.write(bytes(content, 'UTF-8'))
 
     print("Wrote %s" % dest_file)
 
