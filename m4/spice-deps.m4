@@ -160,11 +160,6 @@ AC_DEFUN([SPICE_CHECK_PYTHON_MODULES], [
                AX_PYTHON_MODULE([pyparsing])
                test "$HAVE_PYMOD_SIX" = "yes" && test "$HAVE_PYMOD_PYPARSING" = "yes"],
               [AM_PATH_PYTHON([3])],
-              [PYTHON=python2
-               AX_PYTHON_MODULE([six])
-               AX_PYTHON_MODULE([pyparsing])
-               test "$HAVE_PYMOD_SIX" = "yes" && test "$HAVE_PYMOD_PYPARSING" = "yes"],
-              [AM_PATH_PYTHON([2])],
               [AC_MSG_ERROR([Python modules six and pyparsing are required])])
     else
         AM_PATH_PYTHON
