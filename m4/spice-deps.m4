@@ -153,14 +153,12 @@ AC_DEFUN([SPICE_CHECK_PYTHON_MODULES], [
     if test "x$enable_python_checks" != "xno"; then
         AS_IF([test -n "$PYTHON"], # already set required PYTHON version
               [AM_PATH_PYTHON
-               AX_PYTHON_MODULE([six], [1])
                AX_PYTHON_MODULE([pyparsing], [1])],
               [PYTHON=python3
-               AX_PYTHON_MODULE([six])
                AX_PYTHON_MODULE([pyparsing])
-               test "$HAVE_PYMOD_SIX" = "yes" && test "$HAVE_PYMOD_PYPARSING" = "yes"],
+               test "$HAVE_PYMOD_PYPARSING" = "yes"],
               [AM_PATH_PYTHON([3])],
-              [AC_MSG_ERROR([Python modules six and pyparsing are required])])
+              [AC_MSG_ERROR([Python module pyparsing is required])])
     else
         AM_PATH_PYTHON
     fi

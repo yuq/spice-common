@@ -130,7 +130,7 @@ if spice_common_generate_client_code or spice_common_generate_server_code
   python = py_module.find_installation('python3')
 
   if get_option('python-checks')
-    foreach module : ['six', 'pyparsing']
+    foreach module : ['pyparsing']
       message('Checking for python module @0@'.format(module))
       cmd = run_command(python, '-c', 'import @0@'.format(module), check : false)
       if cmd.returncode() != 0

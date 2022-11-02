@@ -9,7 +9,7 @@ from python_modules import ptypes
 from python_modules import codegen
 from python_modules import demarshal
 from python_modules import marshal
-import six
+
 
 def write_channel_enums(writer, channel, client, describe):
     messages = list(filter(lambda m : m.channel == channel, \
@@ -113,20 +113,17 @@ def write_content(dest_file, content, keep_identical_file):
             f.close()
 
             if content == old_content:
-                six.print_("No changes to %s" % dest_file)
+                print("No changes to %s" % dest_file)
                 return
 
         except IOError:
             pass
 
     f = open(dest_file, 'wb')
-    if six.PY3:
-        f.write(bytes(content, 'UTF-8'))
-    else:
-        f.write(content)
+    f.write(bytes(content, 'UTF-8'))
     f.close()
 
-    six.print_("Wrote %s" % dest_file)
+    print("Wrote %s" % dest_file)
 
 
 parser = OptionParser(usage="usage: %prog [options] <protocol_file> <destination file>")
