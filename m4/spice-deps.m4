@@ -302,6 +302,18 @@ AC_DEFUN([SPICE_CHECK_OPENSSL], [
     PKG_CHECK_MODULES(OPENSSL, openssl)
 ])
 
+# SPICE_CHECK_UDEV
+# -----------------
+# Check for the availability of libudev. If found, it will help to determine
+# if a given vendor GPU is available or not.
+#------------------
+AC_DEFUN([SPICE_CHECK_UDEV], [
+    PKG_CHECK_MODULES([UDEV], [libudev], [have_udev=yes],[have_udev=no])
+    if test "x$have_udev" = "xyes"; then
+      AC_DEFINE([HAVE_UDEV], 1, [whether libudev is available to identify GPU])
+    fi
+])
+
 # SPICE_CHECK_INSTRUMENTATION
 # -----------------
 # Check for the availability of an instrumentation library.

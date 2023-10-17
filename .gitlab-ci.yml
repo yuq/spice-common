@@ -48,4 +48,5 @@ make-win:
     LDFLAGS='-fsanitize=address -lasan'
     mingw64-configure --enable-extra-checks
   - make
+  - export LANG=en_US.UTF-8
   - make LOG_COMPILER=wine check || (cat tests/test-suite.log && exit 1)

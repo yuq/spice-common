@@ -147,6 +147,13 @@ if smartcard_dep.found()
   spice_common_config_data.set('USE_SMARTCARD', '1')
 endif
 
+# udev check
+udev_dep = dependency('libudev', required : false)
+if udev_dep.found()
+  spice_common_deps += udev_dep
+  spice_common_config_data.set('HAVE_UDEV', '1')
+endif
+
 #
 # global C defines
 #
