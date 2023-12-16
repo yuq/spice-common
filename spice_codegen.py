@@ -251,7 +251,7 @@ elif options.license == "BSD":
 
 """
 else:
-    print >> sys.stderr, "Invalid license specified: %s" % options.license
+    print("Invalid license specified: %s" % options.license, file=sys.stderr)
     sys.exit(1)
 
 all_structures = {}
@@ -275,8 +275,8 @@ current:
             all_structures[c_type] = value
             t.generate_c_declaration(writer_top)
     except:
-        print >> sys.stderr, 'type %s' % t
-        print >> sys.stderr, writer.getvalue()
+        print('type %s' % t, file=sys.stderr)
+        print(writer.getvalue(), file=sys.stderr)
         traceback.print_exc(sys.stderr)
         sys.exit(1)
 
@@ -325,7 +325,7 @@ if options.generate_enums or options.generate_dissector:
 
 if options.generate_demarshallers:
     if not options.server and not options.client:
-        print >> sys.stderr, "Must specify client and/or server"
+        print("Must specify client and/or server", file=sys.stderr)
         sys.exit(1)
     demarshal.write_includes(writer)
 
@@ -339,7 +339,7 @@ if options.generate_marshallers or (options.struct_marshallers and len(options.s
 
 if options.generate_marshallers:
     if not options.server and not options.client:
-        print >> sys.stderr, "Must specify client and/or server"
+        print("Must specify client and/or server", file=sys.stderr)
         sys.exit(1)
     if options.server:
         marshal.write_protocol_marshaller(writer, proto, False, options.private_marshallers)
